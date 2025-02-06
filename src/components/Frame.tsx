@@ -19,6 +19,7 @@ import { useSession } from "next-auth/react";
 import { createStore } from "mipd";
 import { Label } from "~/components/ui/label";
 import { PROJECT_TITLE } from "~/lib/constants";
+import Image from "next/image";
 
 const DREAMING_GIF = "https://example.com/path-to-dreaming-teenager.gif"; // Replace with actual GIF URL
 const CONFETTI_GIF = "https://example.com/path-to-confetti-animation.gif"; // Replace with actual GIF URL
@@ -60,18 +61,21 @@ function PopArtInterface({ stage, selectedArtist, pfpUrl }: { stage: string, sel
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl" style={{ fontFamily: 'Comic Sans MS' }}>
-              "When I grow up..."
+              &ldquo;When I grow up...&rdquo;
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col items-center gap-4">
-              <img 
-                src={DREAMING_GIF} 
-                alt="Dreaming teenager" 
-                className="w-48 h-48 rounded-full border-4 border-black"
+              <Image 
+                src={DREAMING_GIF}
+                alt="Dreaming teenager"
+                width={192}
+                height={192}
+                className="rounded-full border-4 border-black"
+                unoptimized
               />
               <p className="text-xl text-center" style={{ fontFamily: 'Arial', color: 'blue' }}>
-                "All I want is to make it POP!"
+                &ldquo;All I want is to make it POP!&rdquo;
               </p>
             </div>
           </CardContent>
@@ -91,19 +95,25 @@ function PopArtInterface({ stage, selectedArtist, pfpUrl }: { stage: string, sel
           </CardHeader>
           <CardContent>
             <div className="relative">
-              <img 
-                src={pfpUrl} 
-                alt="Pop art PFP" 
-                className="w-64 h-64 rounded-full border-4 border-black"
+              <Image 
+                src={pfpUrl || ''}
+                alt="Pop art PFP"
+                width={256}
+                height={256}
+                className="rounded-full border-4 border-black"
                 style={{ 
                   filter: 'contrast(150%) saturate(200%)',
                   transform: 'rotate(5deg)'
                 }}
+                unoptimized
               />
-              <img
+              <Image
                 src={CONFETTI_GIF}
                 alt="Confetti"
+                width={256}
+                height={256}
                 className="absolute inset-0 w-full h-full pointer-events-none"
+                unoptimized
               />
             </div>
           </CardContent>
